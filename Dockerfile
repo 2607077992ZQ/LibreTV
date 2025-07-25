@@ -4,13 +4,18 @@ LABEL maintainer="LibreTV Team"
 LABEL description="LibreTV - 免费在线视频搜索与观看平台"
 
 # 设置环境变量
-ENV TZ=Asia/Shanghai
 ENV PORT=8080
 ENV CORS_ORIGIN=*
 ENV DEBUG=false
 ENV REQUEST_TIMEOUT=5000
 ENV MAX_RETRIES=2
 ENV CACHE_MAX_AGE=1d
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+RUN apk add --no-cache tzdata && \
+    ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && \
+    echo "${TZ}" > /etc/timezone
 
 # 设置工作目录
 WORKDIR /app
