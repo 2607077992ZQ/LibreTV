@@ -2,10 +2,12 @@ name: Upstream Sync
 
 permissions:
   contents: write
+  workflows: write
 
 on:
   schedule:
-    - cron: "0 4 * * *" # At 12PM UTC+8
+    - cron: "0 1 * * *"
+      timezone: "Asia/Shanghai"   # utc8
   workflow_dispatch:
 
 jobs:
